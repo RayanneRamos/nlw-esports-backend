@@ -47,6 +47,37 @@ app.post('/games/:id/ads', async (request, response) => {
   return response.status(201).json(ad);
 });
 
+app.get('/games/:id/ads', async (request, response) => {
+  const gameId = request.params.id;
+
+  const ads = await prisma.ad.findMany({
+    select: {
+      id: true,
+      name: true,
+      weekDays: true,
+      useVoiceChannel: true,
+      yearsPlaying: true,
+      hourStart: true,
+      hourEnd: true,
+    },
+    where: {
+      gameId,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    }
+  });
+
+ return response.json(ads.map(ad => {
+  return {
+    ...ad,
+    weekDays: ad.weekDays.split(','),
+    hourStart: convertMinutesToHoursString(ad.hourStart),
+    hourEnd: convertMinutesToHoursString(ad.hourEnd),
+  }
+ }));
+});
+
 
 
 app.listen(3333);
