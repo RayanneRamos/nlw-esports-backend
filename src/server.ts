@@ -26,6 +26,27 @@ app.get('/games', async (request, response) => {
   return response.json(games);
 });
 
+app.post('/games/:id/ads', async (request, response) => {
+  const gameId = request.params.id;
+  const body: any = request.body;
+
+  const ad = await prisma.ad.create({
+    data: {
+      gameId,
+      id: body.id,
+      name: body.name,
+      yearsPlaying: body.yearsPlaying,
+      discord: body.discord,
+      weekDays: body.weekDays.join(','),
+      hourStart: convertHourStringToMinutes(body.hourStart),
+      hourEnd: convertHourStringToMinutes(body.hourEnd),
+      useVoiceChannel: body.useVoiceChannel,
+    }
+  });
+
+  return response.status(201).json(ad);
+});
+
 
 
 app.listen(3333);
