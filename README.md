@@ -11,7 +11,7 @@
 <br>
 
 ## 💻 Projeto
-[ESports]() é um projeto desenvolvido durante a [Next Level Week ESports](https://nextlevelweek.com/),
+[ESports](https://nlw-esports-web-wf76.vercel.app/) é um projeto desenvolvido durante a [Next Level Week ESports](https://nextlevelweek.com/),
 apresentado pela [Rocketseat](https://rocketseat.com.br) entre 11 a 18 de Setembro de 2022. Essa é a versão backend da aplicação.
 
  - [x] Aula 1
